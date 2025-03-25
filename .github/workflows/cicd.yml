@@ -25,7 +25,7 @@ jobs:
           npm run test --if-present
 
       - name: Archive production artifacts
-        run: zip release.zip ./* --if-present
+        run: zip release.zip ./*
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
