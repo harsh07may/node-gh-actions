@@ -13,6 +13,6 @@ jobs:
 
       - uses: reviewdog/action-eslint@2fee6dd72a5419ff4113f694e2068d2a03bb35dd
         with:
-          eslint_flags: src/ --ext .ts
+          eslint_flags: "src/"
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review
