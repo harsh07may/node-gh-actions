@@ -1,0 +1,19 @@
+name: Lint Code
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  sonarqube:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: reviewdog/action-eslint@2fee6dd72a5419ff4113f694e2068d2a03bb35dd
+        with:
+          eslint_flags: src/ --ext .ts
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-review
