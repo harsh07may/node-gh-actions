@@ -44,6 +44,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: dist
+          path: dist
 
       - name: SSH Setup
 
@@ -53,7 +54,7 @@ jobs:
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H $SERVER_HOST >> ~/.ssh/known_hosts
-          cd /home/runner/work/node-gh-actions/node-gh-actions
+          cd /home/runner/work/
           ls -a
           pwd
 
@@ -61,7 +62,7 @@ jobs:
         uses: burnett01/rsync-deployments@7.0.2
         with:
           switches: -avzr --delete
-          path: ${{github.workspace}}
+          path: dist
           remote_path: ${{secrets.SERVER_PATH}}
           remote_host: ${{ secrets.SERVER_HOST }}
           remote_user: ${{secrets.SERVER_USERNAME}}
