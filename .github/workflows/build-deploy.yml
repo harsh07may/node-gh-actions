@@ -53,5 +53,12 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H $SERVER_HOST >> ~/.ssh/known_hosts
 
-          # Deploy using rsync
-          rsync -avz --delete dist/ $SERVER_USERNAME@$SERVER_HOST:$SERVER_PATH
+      - name: rsync deployments
+        uses: burnett01/rsync-deployments@7.0.2
+        with:
+          switches: -avzr --delete --exclude="" --include="" --filter=""
+          path: dist/
+          remote_path: ${{secrets.SERVER_PATH}}
+          remote_host: ${{ secrets.SERVER_HOST }}
+          remote_user: ${{secrets.SERVER_USERNAME}}
+          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
