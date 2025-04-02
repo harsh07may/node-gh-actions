@@ -64,8 +64,6 @@ jobs:
       - name: SSH Commands
         run: |
           ssh $SERVER_USERNAME@$SERVER_HOST << 'EOF'
-            cd $SERVER_PATH 
-            pwd
-            npm install --production --ignore-scripts --prefer-offline
+            cd /home/ec2-user/node-app/node-gh-actions
             pm2 restart all || pm2 start npm --name "node-gh-actions" -- start
           EOF
