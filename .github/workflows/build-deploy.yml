@@ -28,7 +28,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: app
-          path: node-gh-actions
+          path: ./
 
   deploy:
     runs-on: ubuntu-latest
