@@ -57,7 +57,7 @@ jobs:
         uses: burnett01/rsync-deployments@7.0.2
         with:
           switches: -avzr --delete --exclude="" --include="" --filter=""
-          path: ${{ github.workspace }}/dist
+          path: ~/dist
           remote_path: ${{secrets.SERVER_PATH}}
           remote_host: ${{ secrets.SERVER_HOST }}
           remote_user: ${{secrets.SERVER_USERNAME}}
