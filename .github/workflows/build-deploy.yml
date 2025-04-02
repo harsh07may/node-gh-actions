@@ -27,8 +27,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: dist
-          path: dist
+          name: app
+          path: /
 
   deploy:
     runs-on: ubuntu-latest
@@ -38,14 +38,13 @@ jobs:
       SERVER_HOST: ${{ secrets.SERVER_HOST }}
       SERVER_USERNAME: ${{ secrets.SERVER_USERNAME }}
       SERVER_PATH: ${{ secrets.SERVER_PATH }}
-      RUNNER_PATH: "/home/runner/work/node-gh-actions/node-gh-actions/dist"
+      RUNNER_PATH: "/home/runner/work/node-gh-actions/node-gh-actions/app"
 
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: dist
-          path: dist
+          name: app
 
       - name: SSH Setup
 
