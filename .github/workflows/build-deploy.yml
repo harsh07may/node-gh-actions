@@ -62,7 +62,7 @@ jobs:
         uses: burnett01/rsync-deployments@7.0.2
         with:
           switches: -avzr --delete
-          path: node-gh-actions/dist/
+          path: node-gh-actions/node-gh-actions/dist/
           remote_path: ${{secrets.SERVER_PATH}}
           remote_host: ${{ secrets.SERVER_HOST }}
           remote_user: ${{secrets.SERVER_USERNAME}}
