@@ -38,7 +38,7 @@ jobs:
       SERVER_HOST: ${{ secrets.SERVER_HOST }}
       SERVER_USERNAME: ${{ secrets.SERVER_USERNAME }}
       SERVER_PATH: ${{ secrets.SERVER_PATH }}
-      RUNNER_PATH: "/home/runner/work/node-gh-actions/node-gh-actions/app"
+      RUNNER_PATH: "/home/runner/work/node-gh-actions/node-gh-actions"
 
     steps:
       - name: Download artifact
