@@ -52,6 +52,8 @@ jobs:
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H $SERVER_HOST >> ~/.ssh/known_hosts
+          cd /home/runner/work
+          ls -a
 
       - name: rsync deployments
         uses: burnett01/rsync-deployments@7.0.2
