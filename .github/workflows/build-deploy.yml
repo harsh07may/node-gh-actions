@@ -29,6 +29,7 @@ jobs:
         with:
           name: dist
           path: dist
+
   deploy:
     runs-on: ubuntu-latest
     needs: build
@@ -44,7 +45,7 @@ jobs:
         with:
           name: dist
 
-      - name: Deploy to server
+      - name: SSH Setup
 
         run: |
           # Setup SSH
@@ -60,7 +61,7 @@ jobs:
         uses: burnett01/rsync-deployments@7.0.2
         with:
           switches: -avzr --delete
-          path: node-gh-actions/node-gh-actions
+          path: /home/runner/work/node-gh-actions/node-gh-actions
           remote_path: ${{secrets.SERVER_PATH}}
           remote_host: ${{ secrets.SERVER_HOST }}
           remote_user: ${{secrets.SERVER_USERNAME}}
