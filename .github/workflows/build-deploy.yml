@@ -60,3 +60,11 @@ jobs:
       - name: rsync deployments
         run: |
           rsync -avz --delete $RUNNER_PATH $SERVER_USERNAME@$SERVER_HOST:$SERVER_PATH
+
+      - name: SSH Commands
+        run: |
+          ssh $SERVER_USERNAME@$SERVER_HOST << 'EOF'
+            cd $SERVER_PATH
+            npm install --production --ignore-scripts --prefer-offline
+            pm2 restart all || pm2 start npm --name "node-gh-actions" -- start
+          EOF
