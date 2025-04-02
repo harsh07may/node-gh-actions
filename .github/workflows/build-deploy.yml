@@ -58,8 +58,8 @@ jobs:
       - name: rsync deployments
         uses: burnett01/rsync-deployments@7.0.2
         with:
-          switches: -avzr --delete --exclude="" --include="" --filter=""
-          path: /home/runner/work/node-gh-actions/node-gh-actions
+          switches: -avzr --delete
+          path: /node-gh-actions/node-gh-actions
           remote_path: ${{secrets.SERVER_PATH}}
           remote_host: ${{ secrets.SERVER_HOST }}
           remote_user: ${{secrets.SERVER_USERNAME}}
