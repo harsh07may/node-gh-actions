@@ -38,6 +38,7 @@ jobs:
       SERVER_HOST: ${{ secrets.SERVER_HOST }}
       SERVER_USERNAME: ${{ secrets.SERVER_USERNAME }}
       SERVER_PATH: ${{ secrets.SERVER_PATH }}
+      RUNNER_PATH: "/home/runner/work/node-gh-actions/node-gh-actions/dist"
 
     steps:
       - name: Download artifact
@@ -59,11 +60,5 @@ jobs:
           pwd
 
       - name: rsync deployments
-        uses: burnett01/rsync-deployments@7.0.2
-        with:
-          switches: -avzr --delete --exclude=".git/"
-          path: node-gh-actions/node-gh-actions/
-          remote_path: ${{secrets.SERVER_PATH}}
-          remote_host: ${{ secrets.SERVER_HOST }}
-          remote_user: ${{secrets.SERVER_USERNAME}}
-          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          rsync -avz --delete /home/runner/work/node-gh-actions/node-gh-actions/dist $SERVER_USERNAME@$SERVER_HOST:$SERVER_PATH
