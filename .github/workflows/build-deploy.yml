@@ -58,7 +58,7 @@ jobs:
       - name: rsync deployments
         # From Runner path copy files over to /home/ec2-user/node-app
         run: |
-          rsync -avz --delete $RUNNER_PATH $SERVER_USERNAME@$SERVER_HOST:$SERVER_PATH
+          rsync -avz --delete $RUNNER_PATH $SERVER_USERNAME@$SERVER_HOST:/home/ec2-user/node-app
           ls -a
 
       - name: SSH Commands
