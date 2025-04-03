@@ -54,6 +54,8 @@ jobs:
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H $SERVER_HOST >> ~/.ssh/known_hosts
+          cd /home/runner/work/node-gh-actions
+          ls -a
 
       - name: rsync deployments
         run: |
@@ -64,5 +66,6 @@ jobs:
         run: |
           ssh $SERVER_USERNAME@$SERVER_HOST << 'EOF'
             cd /home/ec2-user/node-gh-actions
+            ls -a
             pm2 restart all || pm2 start npm --name "node-gh-actions" -- start
           EOF
