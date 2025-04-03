@@ -65,7 +65,7 @@ jobs:
       - name: SSH Commands
         run: |
           ssh $SERVER_USERNAME@$SERVER_HOST << 'EOF'
-            cd $SERVER_PATH/node-gh-actions
+            cd $SERVER_PATH/node-app/node-gh-actions
             ls -a
             pm2 restart all || pm2 start npm --name "node-gh-actions" -- start
           EOF
