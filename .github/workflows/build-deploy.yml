@@ -54,7 +54,7 @@ jobs:
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H $SERVER_HOST >> ~/.ssh/known_hosts
-          cd /home/runner/work/node-gh-actions/node-gh-actions
+          cd /home/runner/work/node-gh-actions
           ls -a
 
       - name: rsync deployments
