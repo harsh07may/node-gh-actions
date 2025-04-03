@@ -59,13 +59,13 @@ jobs:
       - name: rsync deployments
         # From Runner path copy files over to /home/ec2-user/node-app
         run: |
-          rsync -avz --delete $RUNNER_PATH $SERVER_USERNAME@$SERVER_HOST:/home/ec2-user/node-app
+          rsync -avz --delete $RUNNER_PATH $SERVER_USERNAME@$SERVER_HOST:$SERVER_PATH
           ls -a
 
       - name: SSH Commands
         run: |
           ssh $SERVER_USERNAME@$SERVER_HOST << 'EOF'
-            cd /home/ec2-user/node-app
+            cd $SERVER_PATH/node-gh-actions
             ls -a
             pm2 restart all || pm2 start npm --name "node-gh-actions" -- start
           EOF
