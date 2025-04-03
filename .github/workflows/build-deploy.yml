@@ -54,10 +54,9 @@ jobs:
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H $SERVER_HOST >> ~/.ssh/known_hosts
-          cd /home/runner/work/node-gh-actions
-          ls -a
 
       - name: rsync deployments
+        # From Runner path copy files over to /home/ec2-user/node-app
         run: |
           rsync -avz --delete $RUNNER_PATH $SERVER_USERNAME@$SERVER_HOST:$SERVER_PATH
           ls -a
@@ -65,7 +64,7 @@ jobs:
       - name: SSH Commands
         run: |
           ssh $SERVER_USERNAME@$SERVER_HOST << 'EOF'
-            cd /home/ec2-user/node-gh-actions
+            cd /home/ec2-user/node-app
             ls -a
             pm2 restart all || pm2 start npm --name "node-gh-actions" -- start
           EOF
