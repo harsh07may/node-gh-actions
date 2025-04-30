@@ -4,6 +4,8 @@ import morgan from "morgan";
 import cors from "cors";
 import helmet from "helmet";
 
+import userRoute from "./routes/user.route";
+
 dotenv.config();
 
 const app: Express = express();
@@ -22,7 +24,7 @@ app.get("/", (req, res) => {
   res.json("APIs Healthy✅");
 });
 
-// app.use(paths.Base, baseRouter);
+app.use("/api/user", userRoute);
 
 const PORT = process.env.PORT || 3000;
 app.listen(3000, () => console.log(`Express server started on port:${PORT}`));
